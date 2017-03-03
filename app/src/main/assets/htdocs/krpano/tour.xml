@@ -1,7 +1,8 @@
 ﻿<krpano version="1.19" title="Virtual Tour">
 
 	<include url="skin/vtourskin.xml" />
-
+	
+	<krpano onstart="skin_hideskin()," /> 
 
 	<!-- customize skin settings: maps, gyro, webvr, thumbnails, tooltips, layout, design, ... -->
 	<skin_settings maps="false"
@@ -11,7 +12,7 @@
 	               maps_zoombuttons="false"
 	               gyro="true"
 	               webvr="true"
-	               webvr_gyro_keeplookingdirection="false"
+	               webvr_gyro_keeplookingdirection="true"
 	               webvr_prev_next_hotspots="true"
 	               littleplanetintro="false"
 	               title="true"
@@ -78,7 +79,7 @@
 	
 	<scene name="scene_IMG_9468_Panorama" title="IMG_9468 Panorama" onstart="" thumburl="panos/IMG_9468_Panorama.tiles/thumb.jpg" lat="" lng="" heading="">
 
-		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="120" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="0" vlookat="0" fovtype="MFOV" fov="90" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/IMG_9468_Panorama.tiles/preview.jpg" />
 

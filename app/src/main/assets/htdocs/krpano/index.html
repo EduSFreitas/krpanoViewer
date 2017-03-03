@@ -23,18 +23,6 @@
 	<script>
 		embedpano({swf:"tour.swf", xml:"tour.xml", id:"krpanoSWFObject", target:"pano", html5:"prefer", mobilescale:1.0, passQueryParameters:true});
 		var krpano = document.getElementById("krpanoSWFObject");
-
-
-		function testEcho(message){
-			 window.JSInterface.doEchoTest(message);
-		}
-
-		function autorotate() {
-
-			/*krpano.set("view.hlookat", 200) */
-			krpano.call("switch(plugin[skin_gyro].enabled);");
-		}
-
 	</script>
 </div>
 
