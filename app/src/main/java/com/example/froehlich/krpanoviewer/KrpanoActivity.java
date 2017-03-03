@@ -9,9 +9,11 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.froehlich.krpanoviewer.bearing.BearingToNorthProvider;
+
 import java.io.IOException;
 
-public class KrpanoActivity extends AppCompatActivity {
+public class KrpanoActivity extends AppCompatActivity  implements BearingToNorthProvider.ChangeEventListener{
     private static final int DEFAULT_PORT = 8080;
 
     // INSTANCE OF ANDROID WEB SERVER
@@ -19,6 +21,10 @@ public class KrpanoActivity extends AppCompatActivity {
 
     // WebView
     private WebView mWebView;
+
+    // Bearing
+    private BearingToNorthProvider mBearingProvider;
+    private double mBearing = Double.NaN;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,8 +37,15 @@ public class KrpanoActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_align:
                 //mWebView.evaluateJavascript("autorotate()", null);
-                mWebView.reload();
-                mWebView.evaluateJavascript("krpano.call('switch(plugin[skin_gyro].enabled);');", null);
+                //mWebView.reload();
+
+                mWebView.evaluateJavascript("krpano.set('view.hlookat', "+ mBearing +");", null);
+                mWebView.evaluateJavascript("krpano.call('plugin[skin_gyro].resetSensor("+ mBearing +");');", null);
+                mWebView.evaluateJavascript("krpano.call('webvr.resetSensor("+ mBearing +");');", null);
+                //mWebView.evaluateJavascript("krpano.call('switch(plugin[skin_gyro].enabled);');", null);
+
+
+                //mWebView.evaluateJavascript("alert('Bearing: " + mBearing + "')", null);
                 return true;
             case R.id.item2:
                 return true;
@@ -48,6 +61,9 @@ public class KrpanoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_krpano);
         mWebView = (WebView) findViewById(R.id.activity_webview);
+
+        mBearingProvider = new BearingToNorthProvider(this);
+        mBearingProvider.setChangeEventListener(this);
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -66,8 +82,10 @@ public class KrpanoActivity extends AppCompatActivity {
         mWebView.loadUrl("http://vr.wtr-architekten.de/krpanoViewer/"); // online
 
 
+
         mWebView.setWebChromeClient(new WebChromeClient());
         mWebView.setWebViewClient(new WebViewClient());
+
     }
 
     // FULLSCREEN
@@ -83,6 +101,17 @@ public class KrpanoActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
     } */
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mBearingProvider.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mBearingProvider.stop();
+    }
 
     @Override
     public void onBackPressed() {
@@ -104,5 +133,10 @@ public class KrpanoActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBearingChanged(double bearing) {
+        mBearing = bearing;
     }
 }

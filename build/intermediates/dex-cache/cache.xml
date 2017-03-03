@@ -21,38 +21,11 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.2.0_4b0d698fde172f2861501a6d31fcdc738ead9361\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.2.0_a7536e5977c44d0a5bff72cc495ba72acd0d1f0c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.2.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.2.0_f7dde1927c3a582dbc29f06dc62b4f14995ed515\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="7d69fef68c9b8a2b35dc0232f129e907e15b6c7c">
+        sha1="51f36617930ec42ffdb21b1e218824affb876568">
         <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_5316e7f3732abbb1459d5b20235b3ca690915340\classes.dex" />
     </item>
     <item
@@ -61,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="5c1a576342c5a59f3a2d616ce6ef926b5c4e436d">
+        sha1="9892795598792fb040dc290b317bd5beb5bbe9c5">
         <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_61cad495b1257c908bcd6bd3a43c14173be5755c\classes.dex" />
     </item>
     <item
@@ -84,12 +57,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Froehlich\.gradle\caches\modules-2\files-2.1\org.nanohttpd\nanohttpd\2.2.0\73a02117620b6cc7683a1ed6ae24c2f36e2a715\nanohttpd-2.2.0.jar"
+        jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.2.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="073a02117620b6cc7683a1ed6ae24c2f36e2a715">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\nanohttpd-2.2.0_b166a443996ba0807cc0b9a7740477acd3c1a8bf\classes.dex" />
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.2.0_4b0d698fde172f2861501a6d31fcdc738ead9361\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -99,6 +72,15 @@
         revision="25.0.2"
         sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
         <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.2.0_a8239a5b45714e04fdf8259786fd63fbdcd7070c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.2.0_a7536e5977c44d0a5bff72cc495ba72acd0d1f0c\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -117,6 +99,15 @@
         revision="25.0.2"
         sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
         <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.2.0_27580f527b7faeaba3e2cfee45d6f2068e58de33\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.2.0_f7dde1927c3a582dbc29f06dc62b4f14995ed515\classes.dex" />
     </item>
 
 </items>
