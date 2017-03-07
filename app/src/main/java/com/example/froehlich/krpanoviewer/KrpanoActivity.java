@@ -2,8 +2,11 @@ package com.example.froehlich.krpanoviewer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -14,7 +17,6 @@ import com.example.froehlich.krpanoviewer.bearing.BearingToNorthProvider;
 import java.io.IOException;
 
 public class KrpanoActivity extends AppCompatActivity  implements BearingToNorthProvider.ChangeEventListener{
-    private static final int DEFAULT_PORT = 8080;
 
     // INSTANCE OF ANDROID WEB SERVER
     private AndroidWebServer androidWebServer;
@@ -42,6 +44,7 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
                 mWebView.evaluateJavascript("krpano.set('view.hlookat', "+ mBearing +");", null);
                 mWebView.evaluateJavascript("krpano.call('plugin[skin_gyro].resetSensor("+ mBearing +");');", null);
                 mWebView.evaluateJavascript("krpano.call('webvr.resetSensor("+ mBearing +");');", null);
+
                 //mWebView.evaluateJavascript("krpano.call('switch(plugin[skin_gyro].enabled);');", null);
 
 
@@ -89,7 +92,7 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
     }
 
     // FULLSCREEN
-    /* @Override
+    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
@@ -100,7 +103,8 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
-    } */
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
@@ -139,4 +143,13 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
     public void onBearingChanged(double bearing) {
         mBearing = bearing;
     }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.krpano_menu, popup.getMenu());
+        popup.show();
+    }
+
+
 }
