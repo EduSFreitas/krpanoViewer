@@ -11,9 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import com.example.froehlich.krpanoviewer.bearing.BearingToNorthProvider;
-
 import java.io.IOException;
 
 public class KrpanoActivity extends AppCompatActivity  implements BearingToNorthProvider.ChangeEventListener{
@@ -41,13 +39,11 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
                 //mWebView.evaluateJavascript("autorotate()", null);
                 //mWebView.reload();
 
+
+                // Nach Norden ausrichten
                 mWebView.evaluateJavascript("krpano.set('view.hlookat', "+ mBearing +");", null);
                 mWebView.evaluateJavascript("krpano.call('plugin[skin_gyro].resetSensor("+ mBearing +");');", null);
                 mWebView.evaluateJavascript("krpano.call('webvr.resetSensor("+ mBearing +");');", null);
-
-                //mWebView.evaluateJavascript("krpano.call('switch(plugin[skin_gyro].enabled);');", null);
-
-
                 //mWebView.evaluateJavascript("alert('Bearing: " + mBearing + "')", null);
                 return true;
             case R.id.item2:
@@ -82,7 +78,8 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
         androidWebServer.start(this.getApplicationContext());
 
         //mWebView.loadUrl("http://localhost:8080/krpano/index.html"); // offline
-        mWebView.loadUrl("http://vr.wtr-architekten.de/krpanoViewer/"); // online
+        //mWebView.loadUrl("http://vr.wtr-architekten.de/krpanoViewer/"); // online
+        mWebView.loadUrl("http://vr.wtr-architekten.de/karlsruhe/index.html"); // online
 
 
 
@@ -92,7 +89,7 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
     }
 
     // FULLSCREEN
-    @Override
+    /*@Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
@@ -103,7 +100,7 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);}
-    }
+    }*/
 
     @Override
     protected void onResume(){
@@ -144,7 +141,7 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
         mBearing = bearing;
     }
 
-    public void showPopup(View v) {
+    public void showOptions(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.krpano_menu, popup.getMenu());
