@@ -11,11 +11,29 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Utility class that provides bearing values to true north.
  */
 public class BearingToNorthProvider implements SensorEventListener, LocationListener
 {
+
+    private List<float[]> mRotHist = new ArrayList<float[]>();
+    private int mRotHistIndex;
+    // Change the value so that the azimuth is stable and fit your requirement
+    private int mHistoryMaxLength = 40;
+    float[] mGravity;
+    float[] mMagnetic;
+    float[] mRotationMatrix = new float[9];
+    // the direction of the back camera, only valid if the device is tilted up by
+// at least 25 degrees.
+    private float mFacing = Float.NaN;
+
+    public static final float TWENTY_FIVE_DEGREE_IN_RADIAN = 0.436332313f;
+    public static final float ONE_FIFTY_FIVE_DEGREE_IN_RADIAN = 2.7052603f;
+
     public static final String TAG = "BearingToNorthProvider";
 
     /**
@@ -33,6 +51,7 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
     private final LocationManager mLocationManager;
     private final Sensor mSensorAccelerometer;
     private final Sensor mSensorMagneticField;
+    private final Sensor mSensorGravity;
 
     // some arrays holding intermediate values read from the sensors, used to calculate our azimuth
     // value
@@ -111,6 +130,7 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
         mSensorAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mLocationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         mSensorMagneticField = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        mSensorGravity = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
         mValuesAccelerometer = new float[3];
         mValuesMagneticField = new float[3];
@@ -136,6 +156,7 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
     {
         mSensorManager.registerListener(this, mSensorAccelerometer, SensorManager.SENSOR_DELAY_UI);
         mSensorManager.registerListener(this, mSensorMagneticField, SensorManager.SENSOR_DELAY_UI);
+        mSensorManager.registerListener(this, mSensorGravity, mSensorManager.SENSOR_DELAY_UI);
 
         for (final String provider : mLocationManager.getProviders(true)) {
             if (LocationManager.GPS_PROVIDER.equals(provider)
@@ -156,6 +177,7 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
     {
         mSensorManager.unregisterListener(this, mSensorAccelerometer);
         mSensorManager.unregisterListener(this, mSensorMagneticField);
+        mSensorManager.unregisterListener(this, mSensorGravity);
         mLocationManager.removeUpdates(this);
     }
 
@@ -192,13 +214,41 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
     @Override
     public void onSensorChanged(SensorEvent event)
     {
+
         switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
                 System.arraycopy(event.values, 0, mValuesAccelerometer, 0, 3);
                 break;
             case Sensor.TYPE_MAGNETIC_FIELD:
+                mMagnetic = event.values.clone();
                 System.arraycopy(event.values, 0, mValuesMagneticField, 0, 3);
                 break;
+            case Sensor.TYPE_GRAVITY:
+                mGravity = event.values.clone();
+                break;
+        }
+
+        if (mGravity != null && mMagnetic != null)
+        {
+            if (SensorManager.getRotationMatrix(mRotationMatrix, null, mGravity, mMagnetic))
+            {
+                // inclination is the degree of tilt by the device independent of orientation (portrait or landscape)
+                // if less than 25 or more than 155 degrees the device is considered lying flat
+                float inclination = (float) Math.acos(mRotationMatrix[8]);
+                if (inclination < TWENTY_FIVE_DEGREE_IN_RADIAN
+                        || inclination > ONE_FIFTY_FIVE_DEGREE_IN_RADIAN)
+                {
+                    // mFacing is undefined, so we need to clear the history
+                    clearRotHist();
+                    mFacing = Float.NaN;
+                }
+                else
+                {
+                    setRotHist();
+                    // mFacing = azimuth is in radian
+                    mFacing = findFacing();
+                }
+            }
         }
 
         boolean success = SensorManager.getRotationMatrix(mMatrixR, mMatrixI,
@@ -210,6 +260,8 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
             SensorManager.getOrientation(mMatrixR, mMatrixValues);
             mAzimuthRadians.putValue(mMatrixValues[0]);
             mAzimuth = Math.toDegrees(mAzimuthRadians.getAverage());
+            Log.d(TAG, "mAzimuth: " + mAzimuth);
+            Log.d(TAG, "mFacing: " + Math.toDegrees(mFacing));
         }
 
         // update mBearing
@@ -250,7 +302,7 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
     {
         if (!Double.isNaN(this.mAzimuth)) {
             if(this.mLocation == null) {
-                Log.w(TAG, "Location is NULL bearing is not true north!");
+                //Log.w(TAG, "Location is NULL bearing is not true north!");
                 mBearing = mAzimuth;
             } else {
                 mBearing = getBearingForLocation(this.mLocation);
@@ -281,5 +333,44 @@ public class BearingToNorthProvider implements SensorEventListener, LocationList
                 (float)location.getAltitude(),
                 System.currentTimeMillis());
         return geomagneticField;
+    }
+
+
+    private void clearRotHist() {
+        mRotHist.clear();
+        mRotHistIndex = 0;
+    }
+
+    private void setRotHist() {
+        float[] hist = mRotationMatrix.clone();
+        if (mRotHist.size() == mHistoryMaxLength)
+        {
+            mRotHist.remove(mRotHistIndex);
+        }
+        mRotHist.add(mRotHistIndex++, hist);
+        mRotHistIndex %= mHistoryMaxLength;
+    }
+
+    private float findFacing() {
+        float[] averageRotHist = average(mRotHist);
+        return (float) Math.atan2(-averageRotHist[2], -averageRotHist[5]);
+    }
+
+    public float[] average(List<float[]> values) {
+        float[] result = new float[9];
+        for (float[] value : values)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                result[i] += value[i];
+            }
+        }
+
+        for (int i = 0; i < 9; i++)
+        {
+            result[i] = result[i] / values.size();
+        }
+
+        return result;
     }
 }
