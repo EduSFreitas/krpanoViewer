@@ -3,20 +3,11 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\fd7e00edcec33fa500dbc2222ac57c6a40fb28ea\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_098562e0e3f8b3394ef584b1bde863d0db44610f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="15d0c24733d7479a04aa8ae75c8d9244d3f77cab">
+        sha1="84b82e40dfc0fbd7918406ba7028dbaf8d4eea76">
         <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_5316e7f3732abbb1459d5b20235b3ca690915340\classes.dex" />
     </item>
     <item
@@ -27,87 +18,6 @@
         revision="25.0.2"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
         <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_61cad495b1257c908bcd6bd3a43c14173be5755c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.2.0_031c58f0c0c0d58f1f0aeac461d4d3e3d8dcaffd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\7dba8b3d3fceb41408b99654082bbd10fb685c5d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a6dc37740ab9dfad0f8a29d6bf6a74f839c8ba6e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\02d3085bc97fe123033fd537e29b96d34c2c77e0\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_767535ec53aaacbf84f80b434b19744ce9417b51\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\e778849ae6b8929861321e306268965efe7779b7\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3e0a06460ef76bbc23d49af4f77944b461df5596\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\5b36a0fc1e4ac55b0dbe461e5b620c599b3df628\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2759651c1a9224875b8c5bcd6488b9ccdd86547c\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\66c6f7ed34b3d6fdeade2264f26f07c6b483e597\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5d33ddfee49a0b8951956fb9d2a899c32a4554af\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\48066c34b1a746d9ca03c3584f321912101c5580\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_810d83b060f49a274571d010b7fee33f6737d7c5\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\7d70f7f8aeeab4795501bbf9c4caf345ea9c3453\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_43d98b12513ffb2adc0331c5cdb9558c7a6656ef\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Froehlich\.android\build-cache\ce38e0ed357730dc12b8c21e21c1d2ed33c548a4\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
-        <dex dex="C:\Users\Froehlich\AndroidStudioProjects\krpanoViewer\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7579cb217c54d2167f3963e365b5b39db9262c94\classes.dex" />
     </item>
 
 </items>

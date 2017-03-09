@@ -1,1 +1,1 @@
-include ':app', ':foxyserver'
+include ':app', ':foxyserver', ':dsensor'
