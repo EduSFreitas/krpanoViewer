@@ -11,10 +11,12 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Toast;
+
 import com.example.froehlich.krpanoviewer.bearing.BearingToNorthProvider;
 import java.io.IOException;
 
-public class KrpanoActivity extends AppCompatActivity  implements BearingToNorthProvider.ChangeEventListener{
+public class KrpanoActivity extends AppCompatActivity  implements BearingToNorthProvider.ChangeEventListener {
 
     // INSTANCE OF ANDROID WEB SERVER
     private AndroidWebServer androidWebServer;
@@ -36,15 +38,11 @@ public class KrpanoActivity extends AppCompatActivity  implements BearingToNorth
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_align:
-                //mWebView.evaluateJavascript("autorotate()", null);
-                //mWebView.reload();
-
-
+                Toast.makeText(this.getApplicationContext(), "Ausrichtung: " + mBearing, Toast.LENGTH_LONG).show();
                 // Nach Norden ausrichten
                 mWebView.evaluateJavascript("krpano.set('view.hlookat', "+ mBearing +");", null);
                 mWebView.evaluateJavascript("krpano.call('plugin[skin_gyro].resetSensor("+ mBearing +");');", null);
                 mWebView.evaluateJavascript("krpano.call('webvr.resetSensor("+ mBearing +");');", null);
-                //mWebView.evaluateJavascript("alert('Bearing: " + mBearing + "')", null);
                 return true;
             case R.id.item2:
                 return true;
